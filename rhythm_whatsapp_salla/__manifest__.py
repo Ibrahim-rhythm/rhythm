@@ -23,7 +23,7 @@ This module is used to send whatsapp message once partner are recived from salla
     # always loaded
     'data': [
         'data/cron.xml',
-        
+
         'views/res_partner_view_changes.xml',
     ],
 

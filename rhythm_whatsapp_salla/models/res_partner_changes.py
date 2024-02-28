@@ -22,12 +22,15 @@ class ResPartnerInherit(models.Model):
     sella_whatsapp = fields.Boolean(string="Whatsapp Sent",
                                     help="This field will be checked, if this partner received whatsapp message")
     def send_whatsapp_message(self):
+        whatsapp_tmp = self.env['whatsapp.template']._find_default_for_model(self._name)
+        print("whatsapp_tmp: ", whatsapp_tmp)
+        composer_obj = self.env['whatsapp.composer']
         for rec in self:
-            whatsapp_tmp = self.env['whatsapp.template']._find_default_for_model(self._name)
-            self.env['whatsapp.composer'].with_context(
-                active_model=self._name, active_ids=self.ids, default_phone=rec.mobile or rec.phone).create({
-                'res_model': self._name,
-                'res_ids': self.ids,
+            print("REC: ", rec, rec._name)
+            composer_obj.with_context(
+                active_model=rec._name, active_ids=rec.ids, default_phone=rec.mobile or rec.phone).create({
+                'res_model': rec._name,
+                'res_ids': rec.ids,
                 'wa_template_id': whatsapp_tmp and whatsapp_tmp.id or False}).action_send_whatsapp_template()
             rec.sella_whatsapp = True
             # TODO: In case of test with action view
