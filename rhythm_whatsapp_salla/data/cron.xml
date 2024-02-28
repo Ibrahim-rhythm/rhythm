@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="cron_sella_send_whatsapp_message" forcecreate="True" model="ir.cron">
+			<field name="name">Manual Send Sella Whatsapp Mesage</field>
+			<field name="active" eval="False"/>
+			<field name="interval_number">1</field>
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+			<field name="model_id" ref="base.model_res_partner"/>
+			<field name="state">code</field>
+			<field name="code">model.send_salla_partner_whatsapp_message()</field>
+		</record>
+    </data>
+</odoo>

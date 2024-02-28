@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="salla_whatsapp_view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">salla.whatsapp.res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group//group" position="inside">
+                    <!--                    <field name="salla_partner"/>-->
+                    <label for="salla_partner"/>
+                    <div class="oe_inline">
+                        <field name="sella_whatsapp" invisible="1"/>
+                        <field name="salla_partner"/>
+                        <button name="send_whatsapp_message" type="object"
+                                string="Manual Send Whatsapp" icon="fa-whatsapp"
+                                invisible="not salla_partner or sella_whatsapp"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
