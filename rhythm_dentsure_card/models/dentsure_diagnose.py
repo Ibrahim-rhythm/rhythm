@@ -52,7 +52,7 @@ class DentistDiagnose(models.Model):
     def _get_complete_name(self):
         for rec in self:
             complete_name = ""
-            if rec.partner_id:
+            if rec.diagnose_id:
                 complete_name += "[%s] %s/%s" % (rec.diagnose_id.name, rec.mouth_sector, rec.tooth_number)
             rec.complete_name = complete_name
 
