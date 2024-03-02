@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_access_dental_diagnose,user.dental.diagnose,model_dental_diagnose,,1,1,1,1
