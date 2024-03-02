@@ -48,12 +48,12 @@ class DentistDiagnose(models.Model):
     diagnose = fields.Text("Diagnose")
     complete_name = fields.Char("Name", compute='_get_complete_name')
 
-    @api.onchange('mouth_sector', 'partner_id', 'tooth_number')
+    @api.onchange('mouth_sector', 'diagnose_id', 'tooth_number')
     def _get_complete_name(self):
         for rec in self:
             complete_name = ""
             if rec.partner_id:
-                complete_name += "[%s] %s/%s" % (rec.partner_id.name, rec.mouth_sector, rec.tooth_number)
+                complete_name += "[%s] %s/%s" % (rec.diagnose_id.name, rec.mouth_sector, rec.tooth_number)
             rec.complete_name = complete_name
 
 # Ahmed Salama Code End.

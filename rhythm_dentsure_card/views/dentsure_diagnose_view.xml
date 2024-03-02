@@ -19,8 +19,8 @@
                         </div>
                         <group>
                             <group>
-                                <field name="patient_id"/>
-                                <field name="doctor_id"/>
+                                <field name="patient_id" context="{'default_dentsure_type': 'patient'}"/>
+                                <field name="doctor_id" context="{'default_dentsure_type': 'doctor'}"/>
                             </group>
                             <group>
                                 <field name="diagnoses_date"/>
