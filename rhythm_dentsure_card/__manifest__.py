@@ -22,12 +22,15 @@ This module is used to send whatsapp message, with dentsure report
 
     # always loaded
     'data': [
+        'data/ir_seq.xml',
+
         'security/ir.model.access.csv',
 
-        'reports/report.xml',
+        # 'reports/report.xml',
 
+        'views/dentsure_diagnose_view.xml',
         'views/res_partner_view_changes.xml',
-        'views/report_densure_card.xml',
+        # 'views/densure_diagnose_report.xml',
     ],
 
 }
