@@ -13,17 +13,17 @@
                         <br/>
                         <table class="table table-borderless" style="margin:5pt;width:100%; height:100%; ">
                             <tr id="main_details" style="height:35pt" class="text-left">
-                                <th style="width:33%;">
+                                <th style="width:33%;" class="text-right">
                                     <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
                                         <p>Member Name</p>
                                     </div>
                                 </th>
-                                <th style="width:33%;">
+                                <th style="width:33%;"  class="text-right">
                                     <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
                                         <p>ID</p>
                                     </div>
                                 </th>
-                                <th style="width:33%;">
+                                <th style="width:33%;"  class="text-right">
                                     <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
                                         <p>Date Of Birth</p>
                                     </div>
@@ -74,19 +74,24 @@
                         </table>
                         <br/>
                         <table style="border: 2pt solid #2596be; border-collapse:separate;
-                         border-radius:12pt; margin:5pt;width:50%; height:25pt; color:#145369;">
+                         border-radius:12pt; margin:5pt;width:50%; height:20pt; color:#145369;">
                             <tr id="main_details" style="height:35pt" class="text-center">
-                                <th style="width:50%;" >
-                                    <p style="border-right:2px solid #2596be;vertical-align:middle;">Scheme</p>
+                                <th style="width:40%;vertical-align:middle;" >
+                                    <div >
+                                        <span style="font-size:14px;vertical-align:middle;">Scheme</span>
+                                    </div>
                                 </th>
-                                <th style="width:50%;"/>
+                                <th  style="width:10%;vertical-align:middle;">
+                                    <div style="border-right:2px solid #2596be; width:20px;height:80%;vertical-align:middle;"/>
+                                </th>
+                                <th style="width:40%;"/>
                             </tr>
                         </table>
 
 
                         <div style="page-break-after: always;"/>
                         <img src='/rhythm_dentsure_card/static/src/img/card-back.png' alt="card back"
-                        style="border-collapse:separate; border-radius:8pt;"/>
+                             style="border-collapse:separate; border-radius:8pt;"/>
                     </div>
                 </t>
             </t>
