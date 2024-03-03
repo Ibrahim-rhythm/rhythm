@@ -26,11 +26,12 @@ This module is used to send whatsapp message, with dentsure report
 
         'security/ir.model.access.csv',
 
-        # 'reports/report.xml',
+        'reports/report.xml',
 
         'views/dentsure_diagnose_view.xml',
         'views/res_partner_view_changes.xml',
-        # 'views/densure_diagnose_report.xml',
+        'views/densure_card_report.xml',
+        'views/dentsure_diagnose_report.xml',
     ],
 
 }

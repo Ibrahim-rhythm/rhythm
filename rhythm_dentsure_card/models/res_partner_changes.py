@@ -20,8 +20,9 @@ class ResPartnerInherit(models.Model):
                                             "Dentsure Diagnoses")
     dentsure_type = fields.Selection([("patient", "Patient"),
                                       ("doctor", "Doctor")], string="Densure Type")
-    patient_member_id = fields.Char("Member ID")
+    patient_member_no = fields.Char("Member No.")
     identification_id = fields.Char(string='Identification No')
-    card_exp_date = fields.Char("Expiration Date")
+    birthday = fields.Date("Birthdate")
+    card_exp_date = fields.Date("Expiration Date")
 
 # Ahmed Salama Code End.

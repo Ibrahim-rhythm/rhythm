@@ -13,8 +13,9 @@
                     <page string="Dentsure Crad" name="dentsure_card">
                         <group>
                             <group>
-                                <field name="patient_member_id"/>
+                                <field name="patient_member_no"/>
                                 <field name="identification_id"/>
+                                <field name="birthday"/>
                                 <field name="card_exp_date"/>
                             </group>
                         </group>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_densure_card">
+    <template id="densure_diagnose_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.internal_layout">
                     <div class="page" >
-                        <div style="page-break-after: always;height=100%"/>
                         <table class="table table-borderless" style="direction:rtl;color:#145369;font-size:20px;font-weight:bold">
                             <tr>
                                 <td style="width:18%"><p>إسم المريض</p></td>
@@ -23,7 +22,6 @@
                             </tr>
 
                         </table>
-                        <br/>
 
                     </div>
                 </t>

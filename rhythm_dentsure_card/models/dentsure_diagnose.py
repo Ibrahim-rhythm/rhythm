@@ -16,7 +16,7 @@ class DentsureDiagnose(models.Model):
     _name = 'dentsure.diagnose'
     _description = "Densure Diagnose"
 
-    name = fields.Char("No.", copy=False, readonly=True, default=lambda x: _('New'))
+    name = fields.Char("No.", copy=False, readonly=True, default=_('New'))
     patient_id = fields.Many2one('res.partner', "Patient", required=True,
                                  domain=[('dentsure_type', '=', 'patient')])
     doctor_id = fields.Many2one('res.partner', "Doctor", required=True,
@@ -25,12 +25,10 @@ class DentsureDiagnose(models.Model):
     dental_diagnose_ids = fields.One2many('dental.diagnose', 'diagnose_id',
                                           'Dental Doiagnose')
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get('name') or vals['name'] == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('rhythm_dentsure_card.dental_diagnose_code') or _('New')
-        return super().create(vals_list)
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('dental_diagnose_code')
+        return super().create(vals)
 
 
 class DentistDiagnose(models.Model):

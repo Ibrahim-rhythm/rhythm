@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="densure_card_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page direction:ltr;" >
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <img src='/rhythm_dentsure_card/static/description/icon.png' alt="card back"/>
+                        </div>
+                        <hr/>
+                        <br/>
+                        <table class="table table-borderless" style="margin:5pt;width:100%; height:100%; ">
+                            <tr id="main_details" style="height:35pt" class="text-left">
+                                <th style="width:33%;">
+                                    <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
+                                        <p>Member Name</p>
+                                    </div>
+                                </th>
+                                <th style="width:33%;">
+                                    <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
+                                        <p>ID</p>
+                                    </div>
+                                </th>
+                                <th style="width:33%;">
+                                    <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
+                                        <p>Date Of Birth</p>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr id="main_details_values" style="height:35pt" class="text-left">
+                                <td style="width:33%;">
+                                    <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;color:#2596be;" align="center">
+                                        <p t-out="o.name"/>
+                                    </div>
+                                </td>
+                                <td style="width:33%;">
+                                    <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;color:#2596be;" align="center">
+                                        <p t-out="o.identification_id"/>
+                                    </div>
+                                </td>
+                                <td style="width:33%;">
+                                    <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;color:#2596be;" align="center">
+                                        <p t-out="o.birthday"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 3rd Row-->
+                            <tr id="extra_details" style="height:35pt" class="text-left">
+                                <th style="width:33%;" >
+                                    <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
+                                        <p>Member No.</p>
+                                    </div>
+                                </th>
+                                <th style="width:33%;">
+                                    <div style="font-size:12pt; margin-bottom:0pt;margin-top:0pt;color:#145369;" align="center">
+                                        <p>Exp.</p>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr id="extra_details_values" style="height:35pt" class="text-left">
+                                <td style="width:33%;">
+                                    <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;color:#2596be;" align="center">
+                                        <p t-out="o.patient_member_no"/>
+                                    </div>
+                                </td>
+                                <td style="width:33%;">
+                                    <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;color:#2596be;" align="center">
+                                        <p t-out="o.card_exp_date"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="border: 2pt solid #2596be; border-collapse:separate;
+                         border-radius:12pt; margin:5pt;width:50%; height:25pt; color:#145369;">
+                            <tr id="main_details" style="height:35pt" class="text-center">
+                                <th style="width:50%;" >
+                                    <p style="border-right:2px solid #2596be;vertical-align:middle;">Scheme</p>
+                                </th>
+                                <th style="width:50%;"/>
+                            </tr>
+                        </table>
+
+
+                        <div style="page-break-after: always;"/>
+                        <img src='/rhythm_dentsure_card/static/src/img/card-back.png' alt="card back"
+                        style="border-collapse:separate; border-radius:8pt;"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
