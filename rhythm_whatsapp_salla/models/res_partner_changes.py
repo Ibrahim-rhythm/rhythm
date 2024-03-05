@@ -22,7 +22,8 @@ class ResPartnerInherit(models.Model):
                                    help="This field will be checked, if this partner created from salla")
     sella_whatsapp = fields.Boolean(string="Whatsapp Sent",
                                     help="This field will be checked, if this partner received whatsapp message")
-    dentsure_card_ids = fields.Many2many('ir.attachment', string="Dentsure Card")
+    dentsure_card_ids = fields.Many2many('ir.attachment',
+                                         string="Dentsure Card(PDF)")
 
     def action_get_attachment(self):
         """ This method is used to generate attachment for pdf report"""
