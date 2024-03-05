@@ -25,4 +25,14 @@ class ResPartnerInherit(models.Model):
     birthday = fields.Date("Birthdate")
     card_exp_date = fields.Date("Expiration Date")
 
+    @api.model
+    def _name_search(self, name, domain=None, operator='ilike', limit=None, order=None):
+        if name:
+            # Be sure name_search is symetric to display_name
+            name = name.split(' / ')[-1]
+            domain = ['|', '|', ('name', operator, name),
+                      ('identification_id', operator, name),
+                      ('patient_member_no', operator, name)]
+        return self._search(domain, limit=limit, order=order)
+
 # Ahmed Salama Code End.

@@ -19,8 +19,10 @@
                         </div>
                         <group>
                             <group>
-                                <field name="patient_id" context="{'default_dentsure_type': 'patient'}"/>
-                                <field name="doctor_id" context="{'default_dentsure_type': 'doctor'}"/>
+                                <field name="patient_id" options="{'no_create': True, 'no_edit': True}"
+                                       context="{'default_dentsure_type': 'patient'}"/>
+                                <field name="doctor_id" options="{'no_create': True, 'no_edit': True}"
+                                       context="{'default_dentsure_type': 'doctor'}"/>
                             </group>
                             <group>
                                 <field name="diagnoses_date"/>
@@ -31,13 +33,6 @@
                                 <div class='row mt16 o_settings_container'>
                                     <div class="col-xs-12 col-md-8 o_setting_box">
                                         <div class="row">
-                                            <div class="col-xs-3 col-md-2">
-                                                <label for="doctor_id" />
-                                            </div>
-                                            <div class="col-xs-3 col-md-3">
-                                                <field name="doctor_id"/>
-                                            </div>
-                                            <div class="col-xs-1 col-md-1"/>
                                             <div class="col-xs-3 col-md-3">
                                                 <label for="diagnoses_date" />
                                             </div>
@@ -47,11 +42,11 @@
                                         </div>
                                         <br/>
                                         <div>
-                                            <field name="dental_diagnose_ids">
+                                            <field name="dental_line_ids">
                                                 <tree editable="bottom">
                                                     <field name="mouth_sector"/>
                                                     <field name="tooth_number"/>
-                                                    <field name="diagnose"/>
+                                                    <field name="notes"/>
                                                 </tree>
                                             </field>
                                         </div>
@@ -64,7 +59,14 @@
                                     </div>
                                 </div>
                             </page>
-
+                            <page name="dental_info" string="Diagnoses">
+                                <field name="diagnose_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="diagnose_id"/>
+                                        <field name="notes"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -88,13 +90,56 @@
             <field name="res_model">dentsure.diagnose</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-               Add New Diagnose
-              </p>
+                <p class="oe_view_nocontent_create">
+                    Add New Diagnose
+                </p>
             </field>
         </record>
-        <menuitem id="dentsure_diagnose" name="Diagnoses" parent="dentsure_sub"
+        <menuitem id="dentsure_diagnose" name="Dentsure Diagnoses" parent="dentsure_sub"
                   action="action_dentsure_diagnose" sequence="1"/>
+        <!--Diagnoses-->
+        <record id="diagnose_diagnose_form_view" model="ir.ui.view">
+            <field name="name">diagnose.diagnose.form.view</field>
+            <field name="model">diagnose.diagnose</field>
+            <field name="arch" type="xml">
+                <form string="Diagnose">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <label for="notes"/>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="diagnose_diagnose_treeform_view" model="ir.ui.view">
+            <field name="name">diagnose.diagnose.tree.view</field>
+            <field name="model">diagnose.diagnose</field>
+            <field name="arch" type="xml">
+                <tree string="Diagnoses">
+                    <field name="name"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_diagnose_diagnose" model="ir.actions.act_window">
+            <field name="name">Diagnoses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">diagnose.diagnose</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add New Diagnose
+                </p>
+            </field>
+        </record>
+        <menuitem id="diagnose_sub" name="Diagnoses"
+                  sequence="2" parent="dentsure_root"/>
+        <menuitem id="diagnose_diagnose_menu" name="Diagnoses" parent="diagnose_sub"
+                  action="action_diagnose_diagnose" sequence="1"/>
 
 
 

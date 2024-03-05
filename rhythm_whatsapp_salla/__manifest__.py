@@ -18,7 +18,7 @@ This module is used to send whatsapp message once partner are recived from salla
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'odoo_multi_channel_sale', 'whatsapp'],
+    'depends': ['base', 'odoo_multi_channel_sale', 'whatsapp', 'rhythm_dentsure_card'],
 
     # always loaded
     'data': [

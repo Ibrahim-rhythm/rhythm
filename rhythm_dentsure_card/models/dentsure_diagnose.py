@@ -22,8 +22,10 @@ class DentsureDiagnose(models.Model):
     doctor_id = fields.Many2one('res.partner', "Doctor", required=True,
                                 domain=[('dentsure_type', '=', 'doctor')])
     diagnoses_date = fields.Date("Diagnose Date", required=True, default=fields.Date.today())
-    dental_diagnose_ids = fields.One2many('dental.diagnose', 'diagnose_id',
-                                          'Dental Doiagnose')
+    dental_line_ids = fields.One2many('dental.line', 'parent_id',
+                                 'Dental Doiagnos')
+    diagnose_line_ids = fields.One2many('diagnose.line', 'parent_id',
+                                   'Doiagnoses')
 
     @api.model
     def create(self, vals):
@@ -31,27 +33,49 @@ class DentsureDiagnose(models.Model):
         return super().create(vals)
 
 
-class DentistDiagnose(models.Model):
-    _name = 'dental.diagnose'
-    _description = "Patient Dental Diagnose"
+class DentistLine(models.Model):
+    _name = 'dental.line'
+    _description = "Patient Dental Line"
     _rec_name = 'complete_name'
 
-    diagnose_id = fields.Many2one('dentsure.diagnose', "Diagnose")
+    parent_id = fields.Many2one('dentsure.diagnose', "Diagnose")
     mouth_sector = fields.Selection([('upper_right', 'Upper Right'), ('upper_left', 'Upper Left'),
                                      ('lower_right', 'Lower Right'), ('lower_left', 'Lower Left')],
                                     required=True, string="Quadrant")
     tooth_number = fields.Selection([('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'),
                                      ('E', 'E'), ('F', 'F'), ('G', 'G'), ('H', 'H')],
                                     required=True, string="Tooth Num.")
-    diagnose = fields.Text("Diagnose")
+    notes = fields.Text("Diagnose")
     complete_name = fields.Char("Name", compute='_get_complete_name')
 
-    @api.onchange('mouth_sector', 'diagnose_id', 'tooth_number')
+    @api.onchange('mouth_sector', 'parent_id', 'tooth_number')
     def _get_complete_name(self):
         for rec in self:
             complete_name = ""
-            if rec.diagnose_id:
-                complete_name += "[%s] %s/%s" % (rec.diagnose_id.name, rec.mouth_sector, rec.tooth_number)
+            if rec.parent_id:
+                complete_name += "[%s] %s/%s" % (rec.parent_id.name, rec.mouth_sector, rec.tooth_number)
             rec.complete_name = complete_name
+
+# TODO: to be deleted
+class DentalDiagnose(models.Model):
+    _name = 'dental.diagnose'
+
+
+class DiagnoseLine(models.Model):
+    _name = 'diagnose.line'
+    _description = "Patient Diagnose Lines"
+
+    parent_id = fields.Many2one('dentsure.diagnose', "Detsure Diagnose")
+    diagnose_id = fields.Many2one('diagnose.diagnose', "Diagnose", required=True)
+    notes = fields.Text("Notes")
+
+
+class Diagnose(models.Model):
+    _name = 'diagnose.diagnose'
+    _description = "Patient Diagnoses"
+
+    name = fields.Char("Diagnose", required=True)
+    notes = fields.Text("Notes")
+
 
 # Ahmed Salama Code End.
