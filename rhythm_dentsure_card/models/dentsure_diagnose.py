@@ -2,6 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import logging
+
 igrey = '\x1b[38;21m'
 yellow = '\x1b[33;21m'
 red = '\x1b[31;21m'
@@ -9,6 +10,8 @@ bold_red = '\x1b[31;1m'
 reset = '\x1b[0m'
 green = '\x1b[32m'
 blue = '\x1b[34m'
+
+
 # Ahmed Salama Code Start ---->
 
 
@@ -17,15 +20,18 @@ class DentsureDiagnose(models.Model):
     _description = "Densure Diagnose"
 
     name = fields.Char("No.", copy=False, readonly=True, default=_('New'))
-    patient_id = fields.Many2one('res.partner', "Patient", required=True,
-                                 domain=[('dentsure_type', '=', 'patient')])
-    doctor_id = fields.Many2one('res.partner', "Doctor", required=True,
-                                domain=[('dentsure_type', '=', 'doctor')])
+    # patient_id = fields.Many2one('res.partner', "Patient",
+    #                              domain=[('dentsure_type', '=', 'patient')], store=True)
+    # doctor_id = fields.Many2one('res.partner', "Doctor",
+    #                             domain=[('dentsure_type', '=', 'doctor')], store=True)
+    patient_id = fields.Char()
+    doctor_id = fields.Char()
     diagnoses_date = fields.Date("Diagnose Date", required=True, default=fields.Date.today())
+    mobile_number = fields.Char("Mobile NO", store=True)
     dental_line_ids = fields.One2many('dental.line', 'parent_id',
-                                 'Dental Doiagnos')
+                                      'Dental Doiagnos')
     diagnose_line_ids = fields.One2many('diagnose.line', 'parent_id',
-                                   'Doiagnoses')
+                                        'Doiagnoses')
 
     @api.model
     def create(self, vals):
@@ -40,10 +46,11 @@ class DentistLine(models.Model):
 
     parent_id = fields.Many2one('dentsure.diagnose', "Diagnose")
     mouth_sector = fields.Selection([('upper_right', 'Upper Right'), ('upper_left', 'Upper Left'),
-                                     ('lower_right', 'Lower Right'), ('lower_left', 'Lower Left')] , string="Quadrant")
+                                     ('lower_right', 'Lower Right'), ('lower_left', 'Lower Left')],
+                                    string="Quadrant")
     tooth_number = fields.Selection([('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'),
                                      ('E', 'E'), ('F', 'F'), ('G', 'G'), ('H', 'H')],
-                                   string="Tooth Num.")
+                                    string="Tooth Num.")
     notes = fields.Text("Diagnose")
     complete_name = fields.Char("Name", compute='_get_complete_name')
 
@@ -54,6 +61,7 @@ class DentistLine(models.Model):
             if rec.parent_id:
                 complete_name += "[%s] %s/%s" % (rec.parent_id.name, rec.mouth_sector, rec.tooth_number)
             rec.complete_name = complete_name
+
 
 # TODO: to be deleted
 class DentalDiagnose(models.Model):
@@ -73,8 +81,7 @@ class Diagnose(models.Model):
     _name = 'diagnose.diagnose'
     _description = "Patient Diagnoses"
 
-    name = fields.Char("Diagnose", required=True)
+    name = fields.Char("Diagnose")
     notes = fields.Text("Notes")
-
 
 # Ahmed Salama Code End.
