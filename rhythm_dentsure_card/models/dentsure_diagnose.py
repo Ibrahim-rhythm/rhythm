@@ -40,11 +40,10 @@ class DentistLine(models.Model):
 
     parent_id = fields.Many2one('dentsure.diagnose', "Diagnose")
     mouth_sector = fields.Selection([('upper_right', 'Upper Right'), ('upper_left', 'Upper Left'),
-                                     ('lower_right', 'Lower Right'), ('lower_left', 'Lower Left')],
-                                    required=True, string="Quadrant")
+                                     ('lower_right', 'Lower Right'), ('lower_left', 'Lower Left')] , string="Quadrant")
     tooth_number = fields.Selection([('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'),
                                      ('E', 'E'), ('F', 'F'), ('G', 'G'), ('H', 'H')],
-                                    required=True, string="Tooth Num.")
+                                   string="Tooth Num.")
     notes = fields.Text("Diagnose")
     complete_name = fields.Char("Name", compute='_get_complete_name')
 
