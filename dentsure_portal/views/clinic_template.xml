@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="clinic_template" name="Clinic Report">
+        <t t-call="website.layout">
+            <link rel="stylesheet" href="/dentsure_portal/static/css/style.css" type="text/css"/>
+            <section class="form-main col-lg-12">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="left-side col-12 congrats"
+                             style="color:white; background-color:#158F9A">
+                            <h3>DentSure Report</h3>
+                        </div>
+                        <div class="card">
+                            <div class="form">
+                                <div class="right-side col-12">
+                                    <form action="/get_diagnose/submit" method="post" role="form"
+                                          enctype="multipart/form-data">
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <div class="co-12 fields-group">
+                                            <div class="form-group">
+                                                <lable for="patient_id">Customer Name</lable>
+                                                <input type="text" id="patient_id" name="patient_id"
+                                                       placeholder="Full Name"/>
+                                            </div>
+                                            <br/>
+                                            <div class="form-group">
+                                                <lable for="mobile_number">Mobile No.</lable>
+                                                <input type="text" id="mobile_number"
+                                                       name="mobile_number" placeholder="Mobile No."/>
+                                            </div>
+                                            <br/>
+                                            <div class="form-group">
+                                                <lable for="doctor_id">Doctor</lable>
+                                                <input type="text" id="doctor_id" name="doctor_id"
+                                                       placeholder="Doctor Name"/>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                        <div class="row row-line" id="service_form_group">
+                                            <div class="col-2">
+                                                <select name="mouth_sector">
+                                                    <option value="">Quadrant</option>
+                                                    <option value="upper_right">Upper Right</option>
+                                                    <option value="upper_left">Upper Left</option>
+                                                    <option value="lower_right">Lower Right</option>
+                                                    <option value="lower_left">Lower Left</option>
+                                                    <!--                                                    <t t-foreach="mouth" t-as="c">-->
+                                                    <!--                                                        <option value="c.id">-->
+                                                    <!--                                                            <t t-esc="c.id"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="tooth_number">
+                                                    <option value="">Tooth Num</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    <option value="E">E</option>
+                                                    <option value="F">F</option>
+                                                    <option value="H">H</option>
+                                                    <!--                                                    <t t-foreach="tooth" t-as="c">-->
+                                                    <!--                                                        <option>-->
+                                                    <!--                                                            <t t-esc="c"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <tt>
+                                                    <input type="text" id="notes"
+                                                           name="notes" placeholder="Description"
+                                                           class="field-size"/>
+                                                </tt>
+                                            </div>
+                                        </div>
+                                        <div class="row row-line" id="service_form_group">
+                                            <div class="col-2">
+                                                <select name="mouth_sector">
+                                                    <option value="">Quadrant</option>
+                                                    <option value="upper_right">Upper Right</option>
+                                                    <option value="upper_left">Upper Left</option>
+                                                    <option value="lower_right">Lower Right</option>
+                                                    <option value="lower_left">Lower Left</option>
+                                                    <!--                                                    <t t-foreach="mouth" t-as="c">-->
+                                                    <!--                                                        <option value="c.id">-->
+                                                    <!--                                                            <t t-esc="c.id"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="tooth_number">
+                                                    <option value="">Tooth Num</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    <option value="E">E</option>
+                                                    <option value="F">F</option>
+                                                    <option value="H">H</option>
+                                                    <!--                                                    <t t-foreach="tooth" t-as="c">-->
+                                                    <!--                                                        <option>-->
+                                                    <!--                                                            <t t-esc="c"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <tt>
+                                                    <input type="text" id="notes"
+                                                           name="notes" placeholder="Description"
+                                                           class="field-size"/>
+                                                </tt>
+                                            </div>
+                                        </div>
+                                        <div class="row row-line" id="service_form_group">
+                                            <div class="col-2">
+                                                <select name="mouth_sector">
+                                                    <option value="">Quadrant</option>
+                                                    <option value="upper_right">Upper Right</option>
+                                                    <option value="upper_left">Upper Left</option>
+                                                    <option value="lower_right">Lower Right</option>
+                                                    <option value="lower_left">Lower Left</option>
+                                                    <!--                                                    <t t-foreach="mouth" t-as="c">-->
+                                                    <!--                                                        <option value="c.id">-->
+                                                    <!--                                                            <t t-esc="c.id"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="tooth_number">
+                                                    <option value="">Tooth Num</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    <option value="E">E</option>
+                                                    <option value="F">F</option>
+                                                    <option value="H">H</option>
+                                                    <!--                                                    <t t-foreach="tooth" t-as="c">-->
+                                                    <!--                                                        <option>-->
+                                                    <!--                                                            <t t-esc="c"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <tt>
+                                                    <input type="text" id="notes"
+                                                           name="notes" placeholder="Description"
+                                                           class="field-size"/>
+                                                </tt>
+                                            </div>
+                                        </div>
+                                        <div class="row row-line" id="service_form_group">
+                                            <div class="col-2">
+                                                <select name="mouth_sector">
+                                                    <option value="">Quadrant</option>
+                                                    <option value="upper_right">Upper Right</option>
+                                                    <option value="upper_left">Upper Left</option>
+                                                    <option value="lower_right">Lower Right</option>
+                                                    <option value="lower_left">Lower Left</option>
+                                                    <!--                                                    <t t-foreach="mouth" t-as="c">-->
+                                                    <!--                                                        <option value="c.id">-->
+                                                    <!--                                                            <t t-esc="c.id"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="tooth_number">
+                                                    <option value="">Tooth Num</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    <option value="E">E</option>
+                                                    <option value="F">F</option>
+                                                    <option value="H">H</option>
+                                                    <!--                                                    <t t-foreach="tooth" t-as="c">-->
+                                                    <!--                                                        <option>-->
+                                                    <!--                                                            <t t-esc="c"/>-->
+                                                    <!--                                                        </option>-->
+                                                    <!--                                                    </t>-->
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <tt>
+                                                    <input type="text" id="notes"
+                                                           name="notes" placeholder="Description"
+                                                           class="field-size"/>
+                                                </tt>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" id="add_line_button" class="btn btn-success" style="background-color:#158F9A">Add
+                                                Line
+                                            </button>
+                                            <ul id="lines_container">
+                                                <!-- Lines will be added here -->
+                                            </ul>
+                                        </div>
+                                        <div class="left-side col-12 congrats">
+                                            <button type="submit"
+                                                    class="submit_button btn btn-success"
+                                                    style="color:white">Submit
+                                                Form
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+
+                </div>
+            </section>
+            <script type="text/javascript" src="/dentsure_portal/static/src/js/add_new_line.js"/>
+        </t>
+    </template>
+
+</odoo>
+
+        <!--                                                <tt>-->
+        <!--                                                    <lable>Check</lable>-->
+        <!--                                                    <br />-->
+        <!--                                                    <input type="radio" value="true" id="radio1" name="radio1"-->
+        <!--                                                        class="checkmark__check" />-->
+        <!--                                                </tt>-->
+
+
+        <!--                                        <div class="row row-line">-->
+        <!--                                            <div class="col-2">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Quadrant</option>-->
+        <!--                                                    <t t-foreach="mouth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+
+        <!--                                            </div>-->
+        <!--                                            <div class="col-4">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Tooth Num</option>-->
+        <!--                                                    <t t-foreach="tooth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+        <!--                                            </div>-->
+        <!--                                            <div class="col-6">-->
+        <!--                                                <tt>-->
+        <!--                                                    &lt;!&ndash;                                                    <lable>Description</lable>&ndash;&gt;-->
+        <!--                                                    <input type="text" id="description2"-->
+        <!--                                                           name="description2"-->
+        <!--                                                           placeholder="Description"-->
+        <!--                                                           class="field-size"/>-->
+        <!--                                                </tt>-->
+        <!--                                            </div>-->
+        <!--                                        </div>-->
+        <!--                                        <div class="row row-line">-->
+        <!--                                            <div class="col-2">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Quadrant</option>-->
+        <!--                                                    <t t-foreach="mouth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+
+        <!--                                            </div>-->
+        <!--                                            <div class="col-4">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Tooth Num</option>-->
+        <!--                                                    <t t-foreach="tooth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+        <!--                                            </div>-->
+        <!--                                            <div class="col-6">-->
+        <!--                                                <tt>-->
+        <!--                                                    &lt;!&ndash;                                                    <lable>Description</lable>&ndash;&gt;-->
+        <!--                                                    <input type="text" id="description3"-->
+        <!--                                                           name="description3"-->
+        <!--                                                           placeholder="Description"-->
+        <!--                                                           class="field-size"/>-->
+        <!--                                                </tt>-->
+        <!--                                            </div>-->
+        <!--                                        </div>-->
+        <!--                                        <div class="row row-line">-->
+        <!--                                            <div class="col-2">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Quadrant</option>-->
+        <!--                                                    <t t-foreach="mouth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+
+        <!--                                            </div>-->
+        <!--                                            <div class="col-4">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Tooth Num</option>-->
+        <!--                                                    <t t-foreach="tooth" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+        <!--                                            </div>-->
+        <!--                                            <div class="col-6">-->
+        <!--                                                <tt>-->
+        <!--                                                    &lt;!&ndash;                                                    <lable>Description</lable>&ndash;&gt;-->
+        <!--                                                    <input type="text" id="description4"-->
+        <!--                                                           name="description4"-->
+        <!--                                                           placeholder="Description"-->
+        <!--                                                           class="field-size"/>-->
+        <!--                                                </tt>-->
+        <!--                                            </div>-->
+        <!--                                        </div>-->
+
+
+        <!--                                        <div class="row row-line">-->
+        <!--                                            <div class="col-2">-->
+        <!--                                                <select>-->
+        <!--                                                    <option value="">Diagnose</option>-->
+        <!--                                                    <t t-foreach="diagnose_id" t-as="c">-->
+        <!--                                                        <option>-->
+        <!--                                                            <t t-esc="c"/>-->
+        <!--                                                        </option>-->
+        <!--                                                    </t>-->
+        <!--                                                </select>-->
+        <!--                                            </div>-->
+        <!--                                            <div class="col-6">-->
+        <!--                                                <tt>-->
+        <!--                                                    <input type="text" id="notes1"-->
+        <!--                                                           name="notes1"-->
+        <!--                                                           placeholder="Notes"-->
+        <!--                                                           class="field-size"/>-->
+        <!--                                                </tt>-->
+        <!--                                            </div>-->
+        <!--                                        </div>-->
+        <!-- <div>
+            <div class="row row-line">
+                <div class="col-1">
+                    <tt>
+                        <lable>Check</lable>
+                        <br />
+                        <input type="radio" value="true" id="radio"
+                            class="checkmark__check" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Check</lable>
+                        <br />
+                        <input type="radio" value="true" id="radio"
+                            class="checkmark__check" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Check</lable>
+                        <br />
+                        <input type="radio" value="true" id="radio"
+                            class="checkmark__check" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Check</lable>
+                        <br />
+                        <input type="radio" value="true" id="radio"
+                            class="checkmark__check" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Check</lable>
+                        <br />
+                        <input type="radio" value="true" id="radio"
+                            class="checkmark__check" />
+                    </tt>
+                </div>
+                <div class="col-2">
+                    <tt>
+                        <lable>Diagnosis</lable>
+                        <input type="selection" id="selection"
+                            class="form-control selection custom-select" />
+                    </tt>
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Diagnosis</lable>
+                        <input type="selection" id="selection"
+                            class="form-control selection custom-select" />
+                    </tt>
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Diagnosis</lable>
+                        <input type="selection" id="selection"
+                            class="form-control selection custom-select" />
+                    </tt>
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Diagnosis</lable>
+                        <input type="selection" id="selection"
+                            class="form-control selection custom-select" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Diagnosis</lable>
+                        <input type="selection" id="selection"
+                            class="form-control selection custom-select" />
+                    </tt>
+                </div>
+                <div class="col-3">
+                    <tt>
+                        <lable>Description</lable>
+                        <input type="text" id="description"
+                            placeholder="Description"
+                            class="field-size" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Description</lable>
+                        <input type="text" id="description"
+                            placeholder="Description"
+                            class="field-size" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Description</lable>
+                        <input type="text" id="description"
+                            placeholder="Description"
+                            class="field-size" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Description</lable>
+                        <input type="text" id="description"
+                            placeholder="Description"
+                            class="field-size" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                    <tt>
+                        <lable>Description</lable>
+                        <input type="text" id="description"
+                            placeholder="Description"
+                            class="field-size" />
+                    </tt>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="col-6">
+                    <lable></lable>
+                    <img src="dentsure_portal/static/img/11.png"
+                        width="500"
+                        height="600" />
+                </div>
+            </div>
+        </div> -->
+
+
+        <!--                                            <div class="col-4">-->
+        <!--                                                <tt>-->
+        <!--                                                    <lable>Diagnosis</lable>-->
+        <!--                                                    <input type="selection" id="selection1"-->
+        <!--                                                        name="selection1"-->
+        <!--                                                        class="form-control selection custom-select" />-->
+        <!--                                                </tt>-->
+        <!--                                            </div>-->

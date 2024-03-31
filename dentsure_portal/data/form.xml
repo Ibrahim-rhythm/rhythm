@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="menu_dentsure_form" model="website.menu">
+            <field name="name">Report Diagnose</field>
+            <field name="url">/dentsure/clinic</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">22</field>
+        </record>
+
+        <record id="your_module_website_assets_frontend" model="ir.ui.view">
+            <field name="name">Dentsure Portal</field>
+            <field name="key">website.assets_frontend</field>
+            <field name="type">qweb</field>
+            <field name="arch" type="xml">
+                <template id="assets_frontend" name="Your Module Assets" inherit_id="website.assets_frontend">
+                    <xpath expr="." position="inside">
+                        <script type="text/javascript" src="/dentsure_portal/static/src/js/add_new_line.js"/>
+                    </xpath>
+                </template>
+            </field>
+        </record>
+
+    </data>
+</odoo>
