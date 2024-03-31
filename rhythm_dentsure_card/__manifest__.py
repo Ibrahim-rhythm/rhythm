@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Rhythm Whatsapp Salla",
+    'name': "Rhythm Denstsure Card",
 
-    'summary': "This module is used to send whatsapp message once partner are recived from salla",
+    'summary': "This module is used to send whatsapp message, with dentsure report",
 
     'description': """
-This module is used to send whatsapp message once partner are recived from salla
+This module is used to send whatsapp message, with dentsure report
     """,
 
     'author': "Rhythm/Ahmed Salama",
@@ -18,13 +18,20 @@ This module is used to send whatsapp message once partner are recived from salla
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'odoo_multi_channel_sale', 'whatsapp', 'rhythm_dentsure_card'],
+    'depends': ['base', 'whatsapp'],
 
     # always loaded
     'data': [
-        'data/cron.xml',
+        'data/ir_seq.xml',
 
+        'security/ir.model.access.csv',
+
+        'reports/report.xml',
+
+        'views/dentsure_diagnose_view.xml',
         'views/res_partner_view_changes.xml',
+        'views/densure_card_report.xml',
+        'views/dentsure_diagnose_report.xml',
     ],
 
 }

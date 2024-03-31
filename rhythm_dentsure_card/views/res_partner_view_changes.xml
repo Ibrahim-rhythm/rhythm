@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dentsure_view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">dentsure.res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_type']" position="after">
+                    <field name="dentsure_type" widget="radio" options="{'horizontal': true}"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Dentsure Crad" name="dentsure_card">
+                        <group>
+                            <group>
+                                <field name="patient_member_no"/>
+                                <field name="identification_id"/>
+                                <field name="birthday"/>
+                                <field name="card_exp_date"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- Patients-->
+        <record id="action_patient" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'default_dentsure_type': 'patient', 'dentsure_type': 'patient'}</field>
+            <field name="domain">[('dentsure_type', '=', 'patient')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Contact as patient
+                </p><p>
+                Odoo helps you track all activities related to your contacts.
+            </p>
+            </field>
+        </record>
+        <menuitem
+                id="res_partner_menu_patient"
+                name="Patients"
+                parent="rhythm_dentsure_card.dentsure_sub"
+                action="action_patient"
+                sequence="2"/>
+        <!-- Doctore-->
+        <record id="action_doctor" model="ir.actions.act_window">
+            <field name="name">Doctors</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'default_dentsure_type': 'doctor', 'dentsure_type': 'doctor'}</field>
+            <field name="domain">[('dentsure_type', '=', 'doctor')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Contact as doctor
+                </p><p>
+                Odoo helps you track all activities related to your contacts.
+            </p>
+            </field>
+        </record>
+        <menuitem
+                id="res_partner_menu_doctor"
+                name="Doctors"
+                parent="rhythm_dentsure_card.dentsure_sub"
+                action="action_doctor"
+                sequence="3"/>
+    </data>
+</odoo>

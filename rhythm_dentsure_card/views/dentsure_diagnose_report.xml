@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="densure_diagnose_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="direction:rtl;" >
+                        <!-- Page 1-->
+                        <!--                        <img src='/rhythm_dentsure_card/static/src/img/page_1.png' alt="Page 1"-->
+                        <!--                             sstyle="width:100%;height:100%"/>-->
+                        <!--                        <div style="page-break-after: always;"/>-->
+                        <!-- Page 2-->
+                        <t t-call="rhythm_dentsure_card.densure_diagnose_page_header"/>
+                        <img src='/rhythm_dentsure_card/static/src/img/mouth_img.png' alt="card back"
+                             style="border-collapse:separate; border-radius:8pt;"/>
+                        <table class="table table-borderless" style="color:#145369;font-size:16px;">
+                            <tr t-foreach="o.dental_line_ids" t-as="line" style="height:25pt;padding:5pt;">
+                                <th style="width:18%;" class="text-center">
+                                    <div style="border:2px solid #2596be;border-collapse:separate; border-radius:8pt;">
+                                        <span t-out="line.tooth_number"/>
+                                    </div>
+                                </th>
+                                <th style="width:4%;"/>
+                                <th style="width:18%;" class="text-center">
+                                    <div style="border:2px solid #2596be;border-collapse:separate; border-radius:8pt;">
+                                        <span t-out="line.mouth_sector"/>
+                                    </div>
+                                </th>
+                                <th style="width:4%;"/>
+                                <th style="width:56%;" class="text-center">
+                                    <div style="border:2px solid #2596be;border-collapse:separate; border-radius:8pt;">
+                                        <span t-out="line.notes"/>
+                                    </div>
+                                </th>
+
+                            </tr>
+
+                        </table>
+                        <div style="page-break-after: always;"/>
+                        <!-- Page 3-->
+                        <t t-call="rhythm_dentsure_card.densure_diagnose_page_header"/>
+                        <h3 style="color:#145369;">التشخيص</h3>
+                        <br/>
+                        <table class="table table-borderless" style="color:#145369;font-size:16px;">
+                            <tr t-foreach="o.diagnose_line_ids" t-as="diagnose_line" style="height:25pt;padding:5pt;">
+                                <th style="width:6%;">
+                                    <span> <i class="fa fa-check-circle"></i></span>
+                                </th>
+                                <th style="width:30%;" class="text-center">
+                                    <span t-field="diagnose_line.diagnose_id"/>
+                                </th>
+                                <th style="width:4%;"/>
+                                <th style="width:60%;" class="text-center">
+                                    <span t-out="diagnose_line.notes"/>
+                                </th>
+
+                            </tr>
+
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="densure_diagnose_page_header">
+        <div class="row">
+            <div class="col-7"/>
+            <div class="col-4">
+                <img src='/rhythm_dentsure_card/static/description/icon.png' alt="Icon"/>
+            </div>
+        </div>
+        <br/>
+        <table class="table table-borderless" id="main_details"
+               style="color:#145369;font-size:18px;font-weight:bold">
+            <tr style="height:25pt;padding:5pt;">
+                <th style="width:20%;" class="text-right">
+                    <div style="border-left:5px solid #2596be;" class="text-right">
+                        <span>إسم المريض</span>
+                    </div>
+                </th>
+                <th style="width:25%;font-size:16px;" class="text-center">
+                    <span t-field="o.patient_id"/>
+                </th>
+                <th style="width:5%;"/>
+                <th style="width:20%;" class="text-right">
+                    <div style="border-left:5px solid #2596be;">
+                        <p>تاريخ المشكلة</p>
+                    </div>
+                </th>
+                <th style="width:25%;font-size:16px;" class="text-center">
+                    <span t-field="o.diagnoses_date"/>
+                </th>
+                <th style="width:5%;"/>
+            </tr>
+            <tr style="height:25pt;padding:5pt;">
+                <td style="width:20%;" class="text-right">
+                    <div style="border-left:5px solid #2596be;">
+                        <span>الطبيب المعالج</span>
+                    </div>
+                </td>
+                <td style="width:25%;font-size:16px;" class="text-center">
+                    <span t-field="o.doctor_id"/>
+                </td>
+            </tr>
+
+        </table>
+        <hr/>
+    </template>
+</odoo>

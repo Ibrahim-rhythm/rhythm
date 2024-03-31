@@ -7,7 +7,6 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//group//group" position="inside">
-                    <!--                    <field name="salla_partner"/>-->
                     <label for="salla_partner"/>
                     <div class="oe_inline">
                         <field name="sella_whatsapp" invisible="1"/>
@@ -16,6 +15,17 @@
                                 string="Manual Send Whatsapp" icon="fa-whatsapp"
                                 invisible="not salla_partner or sella_whatsapp"/>
                     </div>
+                </xpath>
+            </field>
+        </record>
+        <!--Dentsure Card -->
+        <record id="whatsapp_dentsure_view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">whatsapp.dentsure.res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="rhythm_dentsure_card.dentsure_view_partner_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='dentsure_card']//group//group" position="inside">
+                    <field name="dentsure_card_ids" readonly="1" widget="many2many_binary"/>
                 </xpath>
             </field>
         </record>
