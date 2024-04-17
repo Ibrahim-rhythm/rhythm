@@ -27,19 +27,20 @@ class ResPartnerInherit(models.Model):
 
     def action_get_attachment(self):
         """ This method is used to generate attachment for pdf report"""
-        render_pdf = self.env['ir.actions.report']._render_qweb_pdf(
-            'rhythm_dentsure_card.action_standard_report', res_ids=self.ids)
-        # save pdf as attachment
-        filename = "Dentsure Card - %s.pdf" % self.name
-        self.dentsure_card_ids = self.env['ir.attachment'].create({
-            'name': filename,
-            'type': 'binary',
-            'datas': base64.b64encode(render_pdf[0]),
-            'store_fname': filename,
-            'res_model': 'res.partner',
-            'res_id': self.ids[0],
-            'mimetype': 'application/x-pdf'
-        })
+        for rec in self:
+            render_pdf = self.env['ir.actions.report']._render_qweb_pdf(
+                'rhythm_dentsure_card.action_standard_report', res_ids=[rec.id])
+            # save pdf as attachment
+            filename = "Dentsure Card - %s.pdf" % rec.name
+            self.dentsure_card_ids = self.env['ir.attachment'].create({
+                'name': filename,
+                'type': 'binary',
+                'datas': base64.b64encode(render_pdf[0]),
+                'store_fname': filename,
+                'res_model': 'res.partner',
+                'res_id': rec.id,
+                'mimetype': 'application/x-pdf'
+            })
 
     def send_whatsapp_message(self):
         whatsapp_tmp = self.env['whatsapp.template']._find_default_for_model(self._name)
