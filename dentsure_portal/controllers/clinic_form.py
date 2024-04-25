@@ -18,24 +18,30 @@ class Clinic(http.Controller):
 
     @http.route(['/get_diagnose/submit'], type='http', auth="public", website=True)
     def get_diagnose(self, **post):
-        diagnose_vals = []
-        dental_line_vals = []
-        dental_line_vals = request.env['dental.line'].sudo().create({
-            'mouth_sector': post.get('mouth_sector'),
-            'tooth_number': post.get('tooth_number'),
-            'notes': post.get('notes'),
-        })
-        print(dental_line_vals)
+        mouth_sector_inputs = request.httprequest.form.getlist('mouth_sector')
+        tooth_number_inputs = request.httprequest.form.getlist('tooth_number')
+        notes_inputs = request.httprequest.form.getlist('notes')
+
+        dental_lines = []
+        for count in range(len(mouth_sector_inputs)):
+            dental_lines.append(
+                (0, 0, {
+                    'mouth_sector': mouth_sector_inputs[count],
+                    'tooth_number': tooth_number_inputs[count],
+                    'notes': notes_inputs[count],
+                })
+            )
         diagnose = request.env['dentsure.diagnose'].sudo().create({
             'patient_id': post.get('patient_id'),
             'mobile_number': post.get('mobile_number'),
             'doctor_id': post.get('doctor_id'),
-            'dental_line_ids': dental_line_vals,
+            'dental_line_ids': dental_lines,
+        })
+        return request.render("dentsure_portal.tmp_form_success", {
+            'diagnose': diagnose
         })
 
-        vals = {'diagnose': diagnose, 'dental_line_ids': dental_line_vals.id}
-        print(vals)
-        return request.render("dentsure_portal.tmp_form_success", vals)
+
         # if 'radio7' in post:
         #     diagnose_vals.append((0, 0, {
         #         'diagnose_id': post.get('selection7'),
