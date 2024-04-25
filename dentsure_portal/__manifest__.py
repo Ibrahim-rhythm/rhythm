@@ -35,10 +35,10 @@
     ],
     'demo': [],
     'application': True,
-    'assets': {
-        'web.assets_common':[
-            '/dentsure_portal/static/src/js/add_new_line.js',
-        ]
-    },
+    # 'assets': {
+    #     'web.assets_common':[
+    #         '/dentsure_portal/static/src/js/add_line.js',
+    #     ]
+    # },
     'license': 'LGPL-3',
 }
