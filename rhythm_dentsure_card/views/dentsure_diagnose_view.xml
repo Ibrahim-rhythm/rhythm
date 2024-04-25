@@ -21,11 +21,12 @@
                             <group>
                                 <field name="patient_id" options="{'no_create': True, 'no_edit': True}"
                                        context="{'default_dentsure_type': 'patient'}"/>
-                                <field name="doctor_id" options="{'no_create': True, 'no_edit': True}"
-                                       context="{'default_dentsure_type': 'doctor'}"/>
+                                <field name="mobile_number"/>
                             </group>
                             <group>
                                 <field name="diagnoses_date"/>
+                                <field name="doctor_id" options="{'no_create': True, 'no_edit': True}"
+                                       context="{'default_dentsure_type': 'doctor'}"/>
                             </group>
                         </group>
                         <notebook>

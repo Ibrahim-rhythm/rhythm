@@ -45,9 +45,9 @@ function validateData(formData) {
     })
 
     /* phone validation */
-    var phoneFormat = /^\966\d{1,9}$/ ;
+    var phoneFormat = new RegExp(/^(05)(5|0|3|6|4|9|1|8|7)[0-9]{7}$/);
     var phoneInput = document.getElementById('mobile_number');
-    if ((phoneInput.value && phoneInput.value.length != 12) || (phoneInput.value && !phoneInput.value.match(phoneFormat))){
+    if ((phoneInput.value && phoneInput.value.length != 10) || (phoneInput.value && !phoneInput.value.match(phoneFormat))){
         pass = addErrorMessage(phoneInput, "Please enter valid mobile no.");
     }
 
